@@ -1,27 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Feeds</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @feeds.each do |feed| %>
-      <tr>
-        <td><%= feed.image %></td>
-        <td><%= link_to 'Show', feed %></td>
-        <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
-        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Feed', new_feed_path %>
+<h1>All Posts</h1>
+<%= link_to 'New feed', new_feed_path %>
+<% @feeds.each do |feed| %>
+<article>
+  <p>
+    <strong><%= feed.user.name %></strong>
+  </p>
+  <hr>
+  <% if feed.image && feed.image.url %>
+  <%= image_tag feed.image.url()%>
+  <% end %>
+  <p><%= feed.feed %></p>
+  <br>
+  <br>
+  <span class="button"><%= link_to 'Show', feed %></span>
+  <span class="button"><%= link_to 'Edit', edit_feed_path(feed) %></span>
+  <span class="button"><%= link_to 'Delete', feed, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+  <br><br>
+</article>
+<% end %>
