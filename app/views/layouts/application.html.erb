@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Facebook CLone</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+
+  </head>
+
+  <body>
+
+      <header>
+        <%= render 'layouts/header' %>
+      </header>
+
+      <%= yield %>
+
+
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
+
+
+    <!-- <footer class="footer clearfix">
+      <strong>Facebook Clone</strong> by <a href="https://github.com/Aminemba/The-Face.git">Amine Lh</a>. One Step at a Time ...
+         <a href="https://diver.diveintocode.jp">Join us on Diver </a>.
+    </footer> -->
