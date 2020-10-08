@@ -1,9 +1,2 @@
 module FeedsHelper
-  def choose_new_or_edit
-    if action_name == 'new'
-      confirm_feeds_path
-    elseif action_name == 'edit'
-      feed_path
-    end
-  end
 end

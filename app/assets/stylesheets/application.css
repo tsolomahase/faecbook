@@ -3,8 +3,9 @@
 *= require_self
 */
 
-.title {
-  color: white;
+.header {
+
+  background-color: blue;
   font-size: 10px;
 }
 
