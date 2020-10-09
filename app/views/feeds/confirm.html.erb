@@ -1,11 +1,11 @@
 <h3>Send the following...</h3>
 <%= form_with(model: @feed, url: feeds_path, local: true) do |form| %>
-  <%= form.hidden_field :feed %>
   <%= @feed.feed %>
   <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
   <%= form.hidden_field :image_cache %>
   <%= form.submit "submit" %>
 <% end %>
+
 <%= form_with(model: @feed, url: new_feed_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :feed %>
   <%= form.hidden_field :image_cache %>
