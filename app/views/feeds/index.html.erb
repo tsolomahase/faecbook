@@ -1,16 +1,19 @@
-<h1>All Feeds</h1>
+<h1>My feeds</h1>
+
 <%= link_to 'New feed', new_feed_path %>
+
 <% @feeds.each do |feed| %>
-<article>
-  <p>
+<article class="feed">
+  <p class="content">
     <strong><%= feed.user.name %></strong>
   </p>
   <hr>
   <% if feed.image && feed.image.url %>
-  <%= image_tag feed.image.url %>
+  <%= image_tag feed.image.url(), class: "image" %>
   <% end %>
-  <p><%= feed.feed %></p>
+
   <br>
+  <small><%= feed.created_at.strftime('%Y/%-m/%-d %-H:%-M') %></small>
   <br>
   <span class="button"><%= link_to 'Show', feed %></span>
   <span class="button"><%= link_to 'Edit', edit_feed_path(feed) %></span>

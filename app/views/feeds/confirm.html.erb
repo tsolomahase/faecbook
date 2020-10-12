@@ -1,13 +1,20 @@
-<h3>Send the following...</h3>
-<%= form_with(model: @feed, url: feeds_path, local: true) do |form| %>
-  <%= @feed.feed %>
+<h1>confirmation screen</h1>
+<%= form_with(model: @feed,url: feeds_path, local: true) do |form| %>
+
+ <%= form.hidden_field :feed %>
+  <p>content_tag：<%= @feed.feed %></p>
+  <div class="user">
+  </div>
+  <div class="image">
+    <p>image</p>
   <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
+  </div>
   <%= form.hidden_field :image_cache %>
+  <%= form.hidden_field :current_user %>
   <%= form.submit "submit" %>
 <% end %>
-
-<%= form_with(model: @feed, url: new_feed_path, local: true, method: 'get') do |form| %>
-  <%= form.hidden_field :feed %>
+<%= form_with(model:@feed, url:feeds_path, local:true, method:'get') do |form| %>
+  <%= form.hidden_field :feeds %>
   <%= form.hidden_field :image_cache %>
-  <%= form.submit "back", name:'back' %>
+  <%= form.submit "back", name: 'back' %>
 <% end %>

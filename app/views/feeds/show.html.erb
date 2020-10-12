@@ -1,9 +1,11 @@
+<h1>home</h1>
 <p id="notice"><%= notice %></p>
+<p>content: <%= @feed.feed %></p>
 
 <p>
-  <strong>Feed:</strong>
-  <%= @feed.feed %>
+  <strong>Image:</strong>
+  <%= image_tag(@feed.image.url)if @feed.image && @feed.image.url %>
 </p>
 
-<%= link_to 'Edit', edit_feed_path(@feed) %> |
-<%= link_to 'Back', feeds_path %>
+<%= link_to 'edit', edit_feed_path(@feed) %> |
+<%= link_to 'back', feeds_path%>

@@ -1,23 +1,21 @@
-
 .header {
   padding: 5px;
   text-align: left;
   background: #0000CD;
-  color: white;
-  font-size: 5px;
+  color:#fff;
+  font-size: 20px;
 }
 
-header ul {
+.header ul {
   margin: 0 auto;
-  list-style: none;
+  list-style: square;
 }
-header ul a {
+.header ul a {
   display: block;
-  padding: 15px;
   text-decoration: none;
 }
-header li {
-  float: left;
+.header li {
+  float: right;
   width: auto;
 }
 header ul:after {
