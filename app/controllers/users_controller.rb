@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
-    if logged_in?
-      redirect_to feeds_path
-    end
   end
 
   def create

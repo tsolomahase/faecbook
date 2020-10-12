@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :feeds
-  root "users#new"
-  resources :users, only: [:new, :create, :show]
+  root to: "users#new"
+  resources :users
   resources :sessions, only: [:new, :create, :destroy]
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   resources :feeds do

@@ -4,9 +4,6 @@
   <strong>Feed:</strong>
   <%= @feed.feed %>
 </p>
-<p>
-  <strong>image:</strong>
-  <%= image_tag @feed.image.url %>
-</p>
+
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
 <%= link_to 'Back', feeds_path %>

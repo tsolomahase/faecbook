@@ -1,7 +1,6 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
-  before_action :current_user
-  before_action :logged_in?
+
   def index
     @feeds = Feed.all
   end
@@ -22,7 +21,6 @@ class FeedsController < ApplicationController
 
   def create
     @feed = current_user.feeds.build(feed_params)
-
     respond_to do |format|
       if @feed.save
         format.html { redirect_to @feed, notice: 'feed was successfully created.' }
@@ -31,7 +29,6 @@ class FeedsController < ApplicationController
         format.html { render :new }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   def update
@@ -43,7 +40,6 @@ class FeedsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   def destroy

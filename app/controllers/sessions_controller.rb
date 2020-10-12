@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
   def new
-    if logged_in?
-      redirect_to feeds_path
-    end
   end
 
   def  create

@@ -13,15 +13,13 @@
 
   <div class="field">
     <%= form.label :feed %>
-    <%= form.text_area :feed %>
+    <%= form.text_field :feed %>
   </div>
 
   <div class="field">
     <%= form.label :image %>
+    <%= image_tag (@feed.image.url) if @feed.image && @feed.image.url %>
     <%= form.file_field :image %>
-    <% if feed.image && feed.image.url %>
-      <%= image_tag feed.image.url()%>
-    <% end %>
     <%= form.hidden_field :image_cache %>
   </div>
 
