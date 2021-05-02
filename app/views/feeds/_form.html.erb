@@ -1,38 +1,35 @@
-<%= form_with(model: feed, local: true) do |form| %>
-  <%# <% if feed.errors.any? %>
-    <!-- <div id="error_explanation">
-      <%# <h2><%= pluralize(feed.errors.count, "error") %> prohibited this feed from being saved:</h2>
+<%= form_with(model: feed, local: true, url:confirm_feeds_path) do |form| %>
+  <% if feed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(feed.errors.count, "error") %> prohibited this feed from being saved:</h2>
 
       <ul>
-      <%# <% feed.errors.full_messages.each do |message| %>
+      <% feed.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <%# <% end %> %> %> %>
+      <% end %>
       </ul>
-    </div> -->
-  <%# <% end %> %> %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_area :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+  <table>
+    <tr>
+      <th class="content"><%= form.label :feed %></th>
+      <br>
+      <td class="content"><%= form.text_field :feed %></td>
+      <% form.hidden_field :id %>
+    </tr>
+  </table>
 
   <div class="field">
     <%= form.label :image %>
-    <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
+    <%= image_tag(@feed.image.url)if @feed.image && @feed.image.url %>
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %>
+    <%= form.hidden_field :user_id,value: current_user.id %>
   </div>
-
   <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
+    <% feed.user_id %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>

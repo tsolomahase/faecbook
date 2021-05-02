@@ -17,7 +17,7 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create feed" do
     assert_difference('Feed.count') do
-      post feeds_url, params: { feed: { image: @feed.image } }
+      post feeds_url, params: { feed: { feed: @feed.feed } }
     end
 
     assert_redirected_to feed_url(Feed.last)
@@ -34,7 +34,7 @@ class FeedsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update feed" do
-    patch feed_url(@feed), params: { feed: { image: @feed.image } }
+    patch feed_url(@feed), params: { feed: { feed: @feed.feed } }
     assert_redirected_to feed_url(@feed)
   end
 

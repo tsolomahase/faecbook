@@ -1,8 +1,9 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
-  before_action :current_user
-  before_action :authenticate_user
-  before_action :logged_in?
+    before_action :logged_in?
+    before_action :current_user
+    before_action :authenticate_user
+    before_action :check_user, only: [:edit,:update,:destroy]
 
   def index
     @feeds = Feed.all
@@ -11,20 +12,18 @@ class FeedsController < ApplicationController
   def show
   end
 
-  # GET /feeds/new
   def new
     if params[:back]
-      @feed = Feed.new(feed_params)
-      else
+    @feed = Feed.new(feed_params)
+    else
       @feed = Feed.new
     end
   end
-  # GET /feeds/1/edit
+
   def edit
   end
 
-  # POST /feeds
-  # POST /feeds.json
+
   def create
     @feed = current_user.feeds.build(feed_params)
 
@@ -39,22 +38,24 @@ class FeedsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /feeds/1
-  # PATCH/PUT /feeds/1.json
   def update
     respond_to do |format|
-      if @feed.update(feed_params)
+    if   @feed.update(feed_params)
         format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
         format.json { render :show, status: :ok, location: @feed }
-      else
+
         format.html { render :edit }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /feeds/1
-  # DELETE /feeds/1.json
+  def confirm
+    @feed = current_user.feeds.build(feed_params)
+    @feed.id = params[:id]
+   render :new if @feed.invalid?
+  end
+
   def destroy
     @feed.destroy
     respond_to do |format|
@@ -64,19 +65,11 @@ class FeedsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_feed
+  def set_feed
       @feed = Feed.find(params[:id])
-    end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def feed_params
-      params.require(:feed).permit(:image, :image_cache, :feeds, :user_id, :id)
-    end
-end
-
-def confirm
-  @feed = current_user.feeds.build(feed_params)
-  @feed.id = params[:id]
-  render :new if @feed.invalid?
+  def feed_params
+      params.require(:feed).permit(:id, :image, :feed, :image_cache, :user_id)
+  end
 end

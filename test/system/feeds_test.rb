@@ -14,7 +14,7 @@ class FeedsTest < ApplicationSystemTestCase
     visit feeds_url
     click_on "New Feed"
 
-    fill_in "Image", with: @feed.image
+    fill_in "Feed", with: @feed.feed
     click_on "Create Feed"
 
     assert_text "Feed was successfully created"
@@ -25,7 +25,7 @@ class FeedsTest < ApplicationSystemTestCase
     visit feeds_url
     click_on "Edit", match: :first
 
-    fill_in "Image", with: @feed.image
+    fill_in "Feed", with: @feed.feed
     click_on "Update Feed"
 
     assert_text "Feed was successfully updated"
